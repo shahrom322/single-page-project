@@ -1,15 +1,10 @@
 FROM python:3.9
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+WORKDIR /app
 
-WORKDIR /usr/src/app
+RUN pip3 install --upgrade pip
+COPY ./requirements.txt ./
+RUN pip3 install -r requirements.txt
 
-RUN pip install -U pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . /usr/src/app/
-RUN chmod 755 entrypoint.sh
-
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+COPY . .
+ENTRYPOINT ["sh", "entrypoint.sh"]

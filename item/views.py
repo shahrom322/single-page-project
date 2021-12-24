@@ -12,7 +12,3 @@ class ItemAPIView(generics.ListAPIView):
     serializer_class = ItemSerializer
     filter_class = ItemFilter
     filterset_fields = ('date',)
-
-
-def test(request):
-    return HttpResponse('Hllo')
